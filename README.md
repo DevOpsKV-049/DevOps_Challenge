@@ -165,6 +165,7 @@ The chapter captures significant requirements driving the solution architecture.
 
 # SOLUTION ARCHITECTURE
 
+![Example architecture](images/Example_Arch.png)
 The section Solution Architecture defines and reasons the architecture design based on the architecturally significant requirements and constraints identified in the section Architectural Drivers. 
 
 1. The solution provides the Data Processing Pipeline for data on Hybrid Cloud via FaaS Platforms and  Cloud Platform services. 
@@ -190,6 +191,8 @@ The next processing steps that the data processing system provide via its CLI in
 ***
 
 #    Solution Description
+
+![Example Schema](images/Example_Simple_Schema.png)
 The Solution is Hybrid by its nature; the Data Processing can be hosted on Hybrid Infrastructure, including GCP and AWS, and On-Premise Kubernetes based FaaS 
 The choice to use FaaS Platform is good because its logic provides seamless integration with on-premises and any file systems and file storages. By using only Cloud PAAS and FAAS offerings the effort to integrate the Data Ingestion System will be reduced significantly. Also, the operational and management costs will be significantly lower due to the central management of FaaS functions.
 
