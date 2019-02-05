@@ -107,9 +107,12 @@ As a result of this analysis:
 - Testability
 
 ### RISKS
-The Risks table uncovers potential high priority problems which can be expected to impact the assessed solution in major ways unless properly mitigated. 
+The Risks table uncovers potential high priority problems which can be expected to impact the assessed solution in major ways unless properly mitigated.
+
 **Maintainability**: Due to the microservice approach there are a lot of separate function apps, which have a large degree of configuration setting duplication. A single configuration value has to be changed in all the places it appears for the application to function properly and respond to the configuration change
+
 **Security**: API keys and secrets  placed in the configuration
+
 **Scalability**:  Solution relies on DB’s, queues and object storages
 
 ***
@@ -117,12 +120,16 @@ The Risks table uncovers potential high priority problems which can be expected 
 # PROJECT PLAN
 
 Typically, we propose the project to have two key phases of its lifecycle: **INITIAL Phase** and **ADVANCED Phase**.
-The state while the solution stays in active prototyping mode is called the **INITIAL** Phase. 
+The state while the solution stays in active prototyping mode is called the **INITIAL** Phase.
+
 The goal is to implement all the prototypes and technical solutions to make the product ready to enter the ADVANCED Phase.
-The team is responsible for performing the advancement and enhancement activities during the **ADVANCED** Phase. 
+
+The team is responsible for performing the advancement and enhancement activities during the **ADVANCED** Phase.
+
 A vital goal of **ADVANCED Phase** is to maintain the desired quality of service and implement more advanced technical solutions.
 
 We propose you to start with understanding and implementing tactical architecture decisions, specific approaches, and technical prototyping.
+
 Overall architecture and technical vision demonstrated in this document as a simplified Solution Architecture; your task is to build the solution according to the proposed scenario or enhance it and implement the more advanced solution. 
 
 *** 
@@ -130,29 +137,29 @@ Overall architecture and technical vision demonstrated in this document as a sim
 # PROPOSED ARCHITECTURAL DECISIONS
 The chapter captures significant requirements driving the solution architecture. The requirements which are not influencing the solution architecture in substantial ways and irrelevant to the development as well as low level/priority requirement details and scenarios excluded from this section.
 ## DRIVERS
-•    Centralized transaction data storage and management on the cloud
-•    Seamless integration with 3rd party contributors (scientific organizations) and scientists
-•    Secure data access, transmission, and storage protected from the unauthorized access
-•    Configuration-driven data transformation workflow
-•    Service uptime ideally up to 99.9%
-•    Regional outages must not affect system availability
-•    Hybrid Cloud, Serverless, data ingestion pipeline
-•    Data Analysis (Scientific data, Telemetry)
-•    Full audit trail of all operations performed in the system (logging, tracing)
+- Centralized transaction data storage and management on the cloud
+- Seamless integration with 3rd party contributors (scientific organizations) and scientists
+- Secure data access, transmission, and storage protected from the unauthorized access
+- Configuration-driven data transformation workflow
+- Service uptime ideally up to 99.9%
+- Regional outages must not affect system availability
+- Hybrid Cloud, Serverless, data ingestion pipeline
+- Data Analysis (Scientific data, Telemetry)
+- Full audit trail of all operations performed in the system (logging, tracing)
 
 ## CONCERNS
-•    All integration places in the application must be covered by log messages
-•    A secure connection between On-Premise and Cloud
-•    NoSQL nature of main databases
-•    Event brokers are used as an event transport
+- All integration places in the application must be covered by log messages
+- A secure connection between On-Premise and Cloud
+- NoSQL nature of main databases
+- Event brokers are used as an event transport
 ## QUALITY ATTRIBUTES 
-•    Response Latency - Under normal operation, the system should be able to process requests with less than 200ms response time.
-•    Scalability - Under high load, the system should be able to successfully scale up and down to handle occasional spikes in user traffic.
-•    Throughput - Under normal operation, the system should be able to handle 250 requests per second
-•    Availability - 99.99 SLA
-•    Disaster Recovery - Under any circumstance, in the event of a regional disaster in one of the datacenters hosting the application, there should be an automatic failover to a secondary region, with minimal service downtime
-•    Auditing - Under normal operation, an authenticated user attempts to operate the system. An audit trail of the user’s actions should be maintained with information, sufficient to trace modifications back to him
-•    Configurability - Under normal operation, a single configuration change to the system, affecting multiple subsystems, must take no more than 1 minute to implement, and must be applied in a single place
+- Response Latency - Under normal operation, the system should be able to process requests with less than 200ms response time.
+- Scalability - Under high load, the system should be able to successfully scale up and down to handle occasional spikes in user traffic.
+- Throughput - Under normal operation, the system should be able to handle 250 requests per second
+- Availability - 99.99 SLA
+- Disaster Recovery - Under any circumstance, in the event of a regional disaster in one of the datacenters hosting the application, there should be an automatic failover to a secondary region, with minimal service downtime
+- Auditing - Under normal operation, an authenticated user attempts to operate the system. An audit trail of the user’s actions should be maintained with information, sufficient to trace modifications back to him
+- Configurability - Under normal operation, a single configuration change to the system, affecting multiple subsystems, must take no more than 1 minute to implement, and must be applied in a single place
 
 ***
 
@@ -244,72 +251,72 @@ To provide seamless Hybrid-cloud experience, workflow engine built to glue toget
 The overall idea of this period is to simplify the overall Original Solution, emphasize the parts of its vision and components as well as to demonstrate the core decisions and technologies. 
 Transition Phase contains Hybrid infrastructure, based on PaaS Kubernetes, Programmable Edge, On-Premise Kubernetes and FaaS offerings such as Google Functions and On-Premise FaaS.
 
-√ Selected the most applicable use cases to start with
-√ Configurability implemented via shared configuration store, based on distributed object storage & integration with the chosen storage by implementing a simple configuration provider interface, and plugging it into the function app’s container and functions. 
-√ The Deployment is managed by the deployment Hybrid infrastructure provided by Google Cloud Platform and On-Premise Kubernetes
-√ Due to the Serverless nature of the solution, it relies on the underlying FaaS Platform for disaster recovery.
-√ Availability and Capacity Monitoring is done by using Cloud Platforms and Kubernetes capabilities.
-•    Logging and Audit are realized using Cloud Platforms and internal CCP capabilities.
-•    Performance Monitoring  done by using Cloud Platforms and internal CCP capabilities.
-•    Health Monitoring is done by using Cloud Platforms and internal CCP capabilities.
-√ Gathering detailed Functional & Non-Functional Requirements of the program
-√ Simplifying Architecture Design to start with the Hybrid Cloud part:
-•    Define context and align high-level New Architecture with use cases
-•    Emphasize Architecture decisions
-•    Ops Model design
-•    Components simplifying (FaaS)
-√ Resources and storage capacity clarification and requesting
-√ Assumptions validation
-√ Development Schedule creation:
-•    Define timeline, phases, milestones
-•    Deliverables aligning
-•    Define scope
-•    Define inclusions and exclusions
-√ Deploy IoT Edge
-•    MQTT
-•    Gathering telemetry from IoT devices 
-o    Example: Minor Planet Circulars (issued generally on a monthly basis)
-o Case: Minor Planet Circulars Orbit Supplement (MPO) (issued up to thirteen times per year)
-o Case: Minor Planet Circulars Supplement (MPS) (issued three or four times a month)
-o    Example: Minor Planet Electronic Circulars (MPECs) (issued as necessary, generally at least once per day)
-•    Gathering video streaming from scientific equipment
-•    Gathering photo streaming from scientific equipment
-•    Implement Data publisher (The mechanism to write aggregated data to On-Premise)
-√ Use On-Premise Kubernetes (Docker for MacOS with Kubernetes)
-•    Receiving data from IoT Edge
-•    Establish Kafka authentication (certificate-based)
-•    Processing data via FaaS (Serverless)
-o    Data aggregation
-o    Data Processing (Apache Flink, Apache Beam)
-•    Pushing the data to GCPs
-√ Development of the Data Ingestion Logic and Workflows
-√ Development of the Data Processing functions 
-√ Integrating the Data ingestion system into the existing solutions on Edge side
-√ Integrating the image ingestion system into the Data Processing system
-√ Support of the Image Processor on Data ingestion system
+- Selected the most applicable use cases to start with
+- Configurability implemented via shared configuration store, based on distributed object storage & integration with the chosen storage by implementing a simple configuration provider interface, and plugging it into the function app’s container and functions. 
+- The Deployment is managed by the deployment Hybrid infrastructure provided by Google Cloud Platform and On-Premise Kubernetes
+- Due to the Serverless nature of the solution, it relies on the underlying FaaS Platform for disaster recovery.
+- Availability and Capacity Monitoring is done by using Cloud Platforms and Kubernetes capabilities.
+  - Logging and Audit are realized using Cloud Platforms and internal CCP capabilities.
+  - Performance Monitoring  done by using Cloud Platforms and internal CCP capabilities.
+  - Health Monitoring is done by using Cloud Platforms and internal CCP capabilities.
+- Gathering detailed Functional & Non-Functional Requirements of the program
+- Simplifying Architecture Design to start with the Hybrid Cloud part:
+  - Define context and align high-level New Architecture with use cases
+  - Emphasize Architecture decisions
+  - Ops Model design
+  - Components simplifying (FaaS)
+- Resources and storage capacity clarification and requesting
+- Assumptions validation
+- Development Schedule creation:
+  - Define timeline, phases, milestones
+  - Deliverables aligning
+  - Define scope
+  - Define inclusions and exclusions
+- Deploy IoT Edge
+  - MQTT
+  - Gathering telemetry from IoT devices 
+    - Example: Minor Planet Circulars (issued generally on a monthly basis
+      - Case: Minor Planet Circulars Orbit Supplement (MPO) (issued up to thirteen times per year)
+      - Case: Minor Planet Circulars Supplement (MPS) (issued three or four times a month)
+      - Example: Minor Planet Electronic Circulars (MPECs) (issued as necessary, generally at least once per day)
+  - Gathering video streaming from scientific equipment
+  - Gathering photo streaming from scientific equipment
+  - Implement Data publisher (The mechanism to write aggregated data to On-Premise)
+- Use On-Premise Kubernetes (Docker for MacOS with Kubernetes)
+  - Receiving data from IoT Edge
+  - Establish Kafka authentication (certificate-based)
+  - Processing data via FaaS (Serverless)
+  - Data aggregation
+  - Data Processing (Apache Flink, Apache Beam)
+  - Pushing the data to GCPs
+- Development of the Data Ingestion Logic and Workflows
+- Development of the Data Processing functions
+- Integrating the Data ingestion system into the existing solutions on Edge side
+- Integrating the image ingestion system into the Data Processing system
+- Support of the Image Processor on Data ingestion system
 
 ## ADVANCED PHASE
 The overall idea of this phase is to proceed with improvements and follow all the business and architecture decisions. 
 
-√ Align private and Cloud Infrastructure with Cloud Security Policies, guidelines, and standards. 
-√ Design and implement a Disaster Recovery and Business Continuity strategy. 
-√ Replicate Platform components in Hybrid Cloud. 
-√ Geo-replicate all data storages to the secondary region. 
-√ Enable redundancy for REST services
-√ Design and implement retry strategies for calls to external services (GCP or AWS). If an external service is not working correctly, save the requests in persistent storage and suspend the workflow. Attempt to resume the workflow after a predefined period. Allow a finite number of retries before notifying an administrator
-√ Design and implement a data definition validation mechanism. Allow only valid data definitions when adding/updating/processing.
-√ Implement proper data isolation. Validate error content to prevent broadcasting sensitive data in error responses.
-√ Design and implement audit logging.
-√ Implement Environments and enhance CI/CD strategy.
-- Development environment which is automatically updated with the latest code from the develop branch. It is as close to a copy of the production environment as possible.
-- Continuous integration environment created every night, which executes all integration tests, calculates and collects code coverage and metrics, and then deletes the environment. This environment is as close to a copy of the production environment as possible.
-- The testing environment created each time a developer creates a test environment branch. The GIT push operation triggers a deployment mechanism, which creates a test environment in a separate resource group. The newly created environment is as close to a copy of the production environment as possible. When the testing is completed, the test environment branch is deleted. 
-- The staging environment is used to deploy code for final verification and UAT. It is as close to a copy of the production environment as possible. 
-- The production environment is based on Hybrid Infrastructure, aka Hybrid Cloud. The object storage is geo-replicated.
-- CI/CD pipelines 
-- CI jobs for functions
-- Automated Testing and code quality tools for code analysis
-- Configurations management 
+- Align private and Cloud Infrastructure with Cloud Security Policies, guidelines, and standards. 
+- Design and implement a Disaster Recovery and Business Continuity strategy. 
+- Replicate Platform components in Hybrid Cloud. 
+- Geo-replicate all data storages to the secondary region. 
+- Enable redundancy for REST services
+- Design and implement retry strategies for calls to external services (GCP or AWS). If an external service is not working correctly, save the requests in persistent storage and suspend the workflow. Attempt to resume the workflow after a predefined period. Allow a finite number of retries before notifying an administrator
+- Design and implement a data definition validation mechanism. Allow only valid data definitions when adding/updating/processing.
+- Implement proper data isolation. Validate error content to prevent broadcasting sensitive data in error responses.
+- Design and implement audit logging.
+- Implement Environments and enhance CI/CD strategy.
+  - Development environment which is automatically updated with the latest code from the develop branch. It is as close to a copy of the production environment as possible.
+  - Continuous integration environment created every night, which executes all integration tests, calculates and collects code coverage and metrics, and then deletes the environment. This environment is as close to a copy of the production environment as possible.
+  - The testing environment created each time a developer creates a test environment branch. The GIT push operation triggers a deployment mechanism, which creates a test environment in a separate resource group. The newly created environment is as close to a copy of the production environment as possible. When the testing is completed, the test environment branch is deleted. 
+  - The staging environment is used to deploy code for final verification and UAT. It is as close to a copy of the production environment as possible. 
+  - The production environment is based on Hybrid Infrastructure, aka Hybrid Cloud. The object storage is geo-replicated.
+  - CI/CD pipelines 
+  - CI jobs for functions
+  - Automated Testing and code quality tools for code analysis
+  - Configurations management 
 
 ***
 
