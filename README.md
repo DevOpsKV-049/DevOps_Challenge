@@ -180,11 +180,11 @@ The next processing steps that the data processing system provide via its CLI in
 - searching for some values 
 - building graphs 
 
-√ All of these steps can be accomplished through the data processor solution’s CLI, simple UI an API. 
-√ The data processor CLI will also offer the capability to view audit logs, view error information, and troubleshoot any issues. 
-√ Users (scientists) will be able to log into the Data Processing System using credentials.
-√ The Data Processing System also have an IoT Edge part, which has and use the same functions as the Hybrid Cloud part of the platform.
-√ All of the Data Processing system’s functionality depends on the services provided by the data ingestion subsystem. Without the ability to reliably ingest data at scale, the Data Processing system will fail to meet its business goals.
+- All of these steps can be accomplished through the data processor solution’s CLI, simple UI an API.
+- The data processor CLI will also offer the capability to view audit logs, view error information, and troubleshoot any issues.
+- Users (scientists) will be able to log into the Data Processing System using credentials.
+- The Data Processing System also have an IoT Edge part, which has and use the same functions as the Hybrid Cloud part of the platform.
+- All of the Data Processing system’s functionality depends on the services provided by the data ingestion subsystem. Without the ability to reliably ingest data at scale, the Data Processing system will fail to meet its business goals.
 
 
 ***
@@ -215,15 +215,15 @@ Crosscutting **Logging** aspects.
 * FaaS - ideally, the K8S based FaaS Platform, where we run functions
 * Workflow - the way, how we define functions chaining.
 
-√ All the functions must be session less, which means that they are horizontally scalable
-√ FaaS integration to enable the ability to migrate and define hybrid workloads across hybrid clouds.
-√ Functions must have auto-scaling enabled by default
-√ Cloud-Based pub/sub, On-Premise Kafka and MQTT to be used as an event bus
-√ On-Premise object storage and  Cloud Storage to be used 
-√ Cloud NoSQL and On-Premise NoSQL Databases to be used instead of On-Premise only
-√ The solution to leverage Cloud Functions and On-Premise Functions for the service layer
-√ The entire Data Layer Implementation replaced with object storage and big data lake instead of the NoSQL database only
-√ Functions to obtain the replaceability of the application’s components by relying on abstractions
+- All the functions must be session less, which means that they are horizontally scalable
+- FaaS integration to enable the ability to migrate and define hybrid workloads across hybrid clouds.
+- Functions must have auto-scaling enabled by default
+- Cloud-Based pub/sub, On-Premise Kafka and MQTT to be used as an event bus
+- On-Premise object storage and  Cloud Storage to be used 
+- Cloud NoSQL and On-Premise NoSQL Databases to be used instead of On-Premise only
+- The solution to leverage Cloud Functions and On-Premise Functions for the service layer
+- The entire Data Layer Implementation replaced with object storage and big data lake instead of the NoSQL database only
+- Functions to obtain the replaceability of the application’s components by relying on abstractions
 
 ### DATA PROCESSING SYSTEM
 The Data Processing System is the pipeline-like cloud-native system that receives & caters to the REST requests and runs different data processing pipelines. Backend components proposed to be implemented with Python and Golang. User sessions handled by the token.
